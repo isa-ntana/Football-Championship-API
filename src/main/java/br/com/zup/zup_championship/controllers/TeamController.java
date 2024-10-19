@@ -2,6 +2,7 @@ package br.com.zup.zup_championship.controllers;
 
 import br.com.zup.zup_championship.controllers.dtos.RegisterTeamDTO;
 import br.com.zup.zup_championship.controllers.dtos.UpdateTeamDTO;
+import br.com.zup.zup_championship.models.Team;
 import br.com.zup.zup_championship.service.TeamService;
 import br.com.zup.zup_championship.service.mapper.TeamMapper;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -18,6 +20,11 @@ public class TeamController {
 
     @Autowired
     private TeamService teamService;
+
+    @GetMapping
+    public List<Team> showAllAlunos(){
+        return teamService.findAll();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> showAllTeams(@PathVariable Long id){
